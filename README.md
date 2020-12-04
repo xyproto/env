@@ -11,7 +11,7 @@ Also interpret many types of string values that could mean `true` or `false`.
 `func Str(name string, optionalDefault ...string) string`
 
 `Str` does the same as `os.Getenv`, but allows the user to provide a default value (optional).
-Only the first optional argument is used, the rest is discarded.
+Only the first optional value is used, if the environment variable value is empty or not set.
 
 ### func Bool
 
