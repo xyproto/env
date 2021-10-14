@@ -51,3 +51,21 @@ func Int(envName string, defaultValue int) int {
 	}
 	return i
 }
+
+// Int64 returns the number stored in the environment variable, or the provided default value.
+func Int64(envName string, defaultValue int64) int64 {
+	i64, err := strconv.ParseInt(Str(envName), 10, 64)
+	if err != nil {
+		return defaultValue
+	}
+	return i64
+}
+
+// Float64 returns the number stored in the environment variable, or the provided default value.
+func Float64(envName string, defaultValue float64) float64 {
+	f64, err := strconv.ParseFloat(Str(envName), 64)
+	if err != nil {
+		return defaultValue
+	}
+	return f64
+}
