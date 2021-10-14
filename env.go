@@ -3,6 +3,7 @@ package env
 import (
 	"os"
 	"strconv"
+	"time"
 )
 
 // Str does the same as os.Getenv, but allows the user to provide a default value (optional).
@@ -68,4 +69,15 @@ func Float64(envName string, defaultValue float64) float64 {
 		return defaultValue
 	}
 	return f64
+}
+
+// DurationSeconds interprets the environment variable value as seconds
+// and returns a time.Duration. The given default number is interpreted
+// as the number of seconds.
+func DurationSeconds(envName string, defaultValue int64) time.Duration {
+	i64, err := strconv.ParseInt(Str(envName), 10, 64)
+	if err != nil {
+		return time.Duration(defaultValue) * time.Second
+	}
+	return time.Duration(i64) * time.Second
 }
