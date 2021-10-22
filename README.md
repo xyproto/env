@@ -70,6 +70,6 @@ Running the above problem like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 1.3.0
+* Version: 1.4.0
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
