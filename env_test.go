@@ -2,6 +2,7 @@ package env
 
 import (
 	"os"
+	"strings"
 	"testing"
 )
 
@@ -34,6 +35,16 @@ func TestBool(t *testing.T) {
 
 func TestExpandUser(t *testing.T) {
 	if ExpandUser("~/test") == "/tmp" {
+		t.Fail()
+	}
+}
+
+func TestPath(t *testing.T) {
+	if x := Path("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
+		t.Fail()
+	}
+	os.Setenv("P", "~/test")
+	if x := Path("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
 		t.Fail()
 	}
 }

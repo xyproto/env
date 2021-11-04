@@ -22,6 +22,12 @@ func Str(name string, optionalDefault ...string) string {
 	return value
 }
 
+// Path does the same as Str, but expands a leading "~" or "$HOME" string to the home
+// directory of the current user.
+func Path(name string, optionalDefault ...string) string {
+	return ExpandUser(Str(name, optionalDefault...))
+}
+
 // StrAlt will return the string value of the first given environment variable name,
 // or, if that is not available, use the string value of the second given environment variable.
 // If none are available, the optional default string is returned.
