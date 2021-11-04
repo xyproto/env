@@ -3,6 +3,7 @@ package env
 import (
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -21,18 +22,6 @@ func Str(name string, optionalDefault ...string) string {
 	return value
 }
 
-// AsBool can be used to interpret a string value as either true or false. Examples of true values are "yes" and "1".
-func AsBool(s string) bool {
-	switch s {
-	case "yes", "1", "true", "YES", "TRUE", "True", "Yes", "Y", "y", "enable", "Enable", "ENABLE", "enabled", "Enabled", "ENABLED", "affirmative", "Affirmative", "AFFIRMATIVE":
-		return true
-	case "", "no", "0", "false", "NO", "FALSE", "False", "No", "N", "n", "disable", "Disable", "DISABLE", "disabled", "Disabled", "DISABLED", "denied", "Denied", "DENIED":
-		fallthrough
-	default:
-		return false
-	}
-}
-
 // Bool returns the bool value of the given environment variable name.
 // Returns false if it is not declared or empty.
 func Bool(envName string) bool {
@@ -42,6 +31,12 @@ func Bool(envName string) bool {
 // Has returns true if the given environment variable name is set and not empty.
 func Has(envName string) bool {
 	return Str(envName) != ""
+}
+
+// Is returns true if the given environment variable is the given string value.
+// The whitespace of both values are trimmed before the comparison.
+func Is(envName, value string) bool {
+	return strings.TrimSpace(Str(envName)) == strings.TrimSpace(value)
 }
 
 // Int returns the number stored in the environment variable, or the provided default value.
@@ -102,4 +97,21 @@ func DurationHours(envName string, defaultValue int64) time.Duration {
 		return time.Duration(defaultValue) * time.Hour
 	}
 	return time.Duration(i64) * time.Hour
+}
+
+// Contains checks if the given environment variable contains the given string
+func Contains(envName string, value string) bool {
+	return strings.Contains(Str(envName), value)
+}
+
+// AsBool can be used to interpret a string value as either true or false. Examples of true values are "yes" and "1".
+func AsBool(s string) bool {
+	switch s {
+	case "1", "ABSOLUTELY", "AFFIRMATIVE", "Absolutely", "Affirmative", "ENABLE", "ENABLED", "Enable", "Enabled", "POSITIVE", "Positive", "T", "TRUE", "True", "Y", "YES", "Yes", "absolutely", "affirmative", "enable", "enabled", "positive", "t", "true", "y", "yes":
+		return true
+	case "", "0", "BLANK", "Blank", "DENIED", "DISABLE", "DISABLED", "Denied", "Disable", "Disabled", "F", "FALSE", "False", "N", "NEGATIVE", "NIL", "NO", "NOPE", "NULL", "Negative", "Nil", "No", "Nope", "Null", "blank", "denied", "disable", "disabled", "f", "false", "n", "negative", "nil", "no", "nope", "null":
+		fallthrough
+	default:
+		return false
+	}
 }
