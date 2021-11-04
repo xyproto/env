@@ -57,6 +57,14 @@ Checks if the given environment variable contains the given string.
 
 Checks if the given environment variable is the given value, with leading and trailing spaces trimmed before comparing both values.
 
+### HomeDir
+
+Returns the home directory of the current user, or `/tmp` if it is not available. `/home/$LOGNAME` or `/home/$USER` are returned if `$HOME` is not set.
+
+### ExpandUser
+
+Replaces `~` or `$HOME` at the start of a string with the home directory of the current user.
+
 ## Example
 
 ```go
