@@ -2,6 +2,7 @@ package env
 
 import (
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -22,10 +23,20 @@ func Str(name string, optionalDefault ...string) string {
 	return value
 }
 
-// Path does the same as Str, but expands a leading "~" or "$HOME" string to the home
+// File does the same as Str, but expands a leading "~" or "$HOME" string to the home
 // directory of the current user.
-func Path(name string, optionalDefault ...string) string {
+func File(name string, optionalDefault ...string) string {
 	return ExpandUser(Str(name, optionalDefault...))
+}
+
+// Dir does the same as File
+func Dir(name string, optionalDefault ...string) string {
+	return ExpandUser(Str(name, optionalDefault...))
+}
+
+// Path returns the elements in the $PATH environment variable
+func Path() []string {
+	return filepath.SplitList(Str("PATH"))
 }
 
 // StrAlt will return the string value of the first given environment variable name,

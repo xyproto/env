@@ -65,9 +65,17 @@ Returns the home directory of the current user, or `/tmp` if it is not available
 
 Replaces `~` or `$HOME` at the start of a string with the home directory of the current user.
 
-### Path
+### File
 
 Does the same as the `Str` function, but replaces a leading `~` or `$HOME` with the home directory of the current user.
+
+### Dir
+
+Does the same as the `Str` function, but replaces a leading `~` or `$HOME` with the home directory of the current user.
+
+### Path
+
+Returns the current `$PATH` as a slice of strings.
 
 ## Example
 

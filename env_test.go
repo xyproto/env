@@ -39,12 +39,19 @@ func TestExpandUser(t *testing.T) {
 	}
 }
 
-func TestPath(t *testing.T) {
-	if x := Path("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
+func TestDir(t *testing.T) {
+	if x := Dir("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
 		t.Fail()
 	}
 	os.Setenv("P", "~/test")
-	if x := Path("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
+	if x := Dir("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
+		t.Fail()
+	}
+}
+
+func TestPath(t *testing.T) {
+	os.Setenv("PATH", "/usr/bin:/bin:/usr/local/bin")
+	if len(Path()) != 3 {
 		t.Fail()
 	}
 }
