@@ -49,6 +49,14 @@ Same as Int, but takes a default float64 value and returns a float64.
 
 Takes a default int64 value, for the number of seconds, interprets the environment variable as the number of seconds and returns a `time.Duration`.
 
+### Contains
+
+Checks if the given environment variable contains the given string.
+
+### Is
+
+Checks if the given environment variable is the given value, with leading and trailing spaces trimmed before comparing both values.
+
 ## Example
 
 ```go
@@ -70,6 +78,6 @@ Running the above problem like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 1.4.0
+* Version: 1.5.0
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
