@@ -22,6 +22,27 @@ func Str(name string, optionalDefault ...string) string {
 	return value
 }
 
+// StrAlt will return the string value of the first given environment variable name,
+// or, if that is not available, use the string value of the second given environment variable.
+// If none are available, the optional default string is returned.
+func StrAlt(name1, name2 string, optionalDefault ...string) string {
+	// Retrieve the environment variable as a (possibly empty) string
+	value := os.Getenv(name1)
+
+	// If it is empty, try the second name
+	if value == "" {
+		value = os.Getenv(name2)
+	}
+
+	// If empty and a default value was provided, return that
+	if value == "" && len(optionalDefault) > 0 {
+		return optionalDefault[0]
+	}
+
+	// If not, return the non-empty value
+	return value
+}
+
 // Bool returns the bool value of the given environment variable name.
 // Returns false if it is not declared or empty.
 func Bool(envName string) bool {
@@ -114,4 +135,35 @@ func AsBool(s string) bool {
 	default:
 		return false
 	}
+}
+
+// HomeDir returns the path to the home directory of the user, if available.
+// If not available, $LOGNAME or $USER are used to construct a path starting with /home/.
+// If $LOGNAME and $USER are not available, just "/tmp" is returned.
+func HomeDir() string {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		// Use $LOGNAME, $USER or "user", in that order
+		userName := StrAlt("LOGNAME", "USER", "user")
+		// Use $HOME or /home/username
+		homeDir = Str("HOME", "/home/"+userName)
+		if homeDir == "/home/user" {
+			homeDir = "/tmp"
+		}
+	}
+	return homeDir
+}
+
+// ExpandUser replaces a leading ~ or $HOME with the path
+// to the home directory of the current user
+func ExpandUser(path string) string {
+	// this is a simpler alternative to using os.UserHomeDir (which requires Go 1.12 or later)
+	if strings.HasPrefix(path, "~") {
+		// Expand ~ to the home directory
+		path = strings.Replace(path, "~", HomeDir(), 1)
+	} else if strings.HasPrefix(path, "$HOME") {
+		// Expand a leading $HOME variable to the home directory
+		path = strings.Replace(path, "$HOME", HomeDir(), 1)
+	}
+	return path
 }

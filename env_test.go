@@ -31,3 +31,9 @@ func TestBool(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestExpandUser(t *testing.T) {
+	if ExpandUser("~/test") == "/tmp" {
+		t.Fail()
+	}
+}
