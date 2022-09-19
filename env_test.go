@@ -55,3 +55,9 @@ func TestPath(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestHomeDir(t *testing.T) {
+	if HomeDir() == "" {
+		t.Fail()
+	}
+}
