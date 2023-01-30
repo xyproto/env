@@ -92,7 +92,7 @@ func main() {
 }
 ```
 
-Running the above problem like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
+Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
     20m0s
 
