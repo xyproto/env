@@ -49,6 +49,14 @@ Same as Int, but takes a default float64 value and returns a float64.
 
 Takes a default int64 value, for the number of seconds, interprets the environment variable as the number of seconds and returns a `time.Duration`.
 
+### DurationMinutes
+
+Takes a default int64 value, for the number of minutes, interprets the environment variable as the number of seconds and returns a `time.Duration`.
+
+### DurationHours
+
+Takes a default int64 value, for the number of hours, interprets the environment variable as the number of seconds and returns a `time.Duration`.
+
 ### Contains
 
 Checks if the given environment variable contains the given string.
