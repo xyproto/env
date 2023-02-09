@@ -2,7 +2,6 @@
 package env
 
 import (
-	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -13,7 +12,7 @@ import (
 // Only the first optional argument is used, the rest is discarded.
 func Str(name string, optionalDefault ...string) string {
 	// Retrieve the environment variable as a (possibly empty) string
-	value := os.Getenv(name)
+	value := getenv(name)
 
 	// If empty and a default value was provided, return that
 	if value == "" && len(optionalDefault) > 0 {
@@ -45,11 +44,11 @@ func Path() []string {
 // If none are available, the optional default string is returned.
 func StrAlt(name1, name2 string, optionalDefault ...string) string {
 	// Retrieve the environment variable as a (possibly empty) string
-	value := os.Getenv(name1)
+	value := getenv(name1)
 
 	// If it is empty, try the second name
 	if value == "" {
-		value = os.Getenv(name2)
+		value = getenv(name2)
 	}
 
 	// If empty and a default value was provided, return that
@@ -161,7 +160,7 @@ func AsBool(s string) bool {
 // The returned string is what the home directory should have been named, if it would have existed.
 // No checks are made for if the directory exists.
 func HomeDir() string {
-	homeDir, err := os.UserHomeDir()
+	homeDir, err := userHomeDir()
 	if err != nil {
 		// Use $LOGNAME, $USER or "user", in that order
 		userName := StrAlt("LOGNAME", "USER", "user")

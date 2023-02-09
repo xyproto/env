@@ -6,72 +6,72 @@ import (
 	"testing"
 )
 
-func TestContains(t *testing.T) {
-	Unload()
-	Unset("ASDF")
+func TestCachingContains(t *testing.T) {
 	os.Setenv("ASDF", "123asdf123")
+	Load()
 	if !Contains("ASDF", "asdf") {
 		t.Fail()
 	}
 	Unset("ASDF")
 }
 
-func TestHas(t *testing.T) {
-	Unload()
-	Unset("ASDFASDFASDF")
+func TestCachingHas(t *testing.T) {
+	Load()
 	if Has("ASDFASDFASDF") {
 		t.Fail()
 	}
 	os.Setenv("ASDFASDFASDF", "1")
+	Load()
 	if !Has("ASDFASDFASDF") {
 		t.Fail()
 	}
 	Unset("ASDFASDFASDF")
 }
 
-func TestBool(t *testing.T) {
-	Unload()
-	Unset("QWERTYQWERTY")
+func TestCachingBool(t *testing.T) {
+	Load()
 	if Bool("QWERTYQWERTY") {
 		t.Fail()
 	}
 	os.Setenv("QWERTYQWERTY", "yes")
+	Load()
 	if !Bool("QWERTYQWERTY") {
 		t.Fail()
 	}
-	Unset("QWERTYQWERTY")
+	Unset("QERTYQWERTY")
 }
 
-func TestExpandUser(t *testing.T) {
-	Unload()
+func TestCachingExpandUser(t *testing.T) {
+	Load()
 	if ExpandUser("~/test") == "/tmp" {
 		t.Fail()
 	}
 }
 
-func TestDir(t *testing.T) {
-	Unload()
-	Unset("P")
+func TestCachingDir(t *testing.T) {
+	Load()
 	if x := Dir("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
 		t.Fail()
 	}
 	os.Setenv("P", "~/test")
+	Load()
 	if x := Dir("P", "~/ost"); x == "" || x == "/tmp" || strings.HasPrefix(x, "~") {
 		t.Fail()
 	}
 	Unset("P")
 }
 
-func TestPath(t *testing.T) {
-	Unload()
+func TestCachingPath(t *testing.T) {
 	os.Setenv("PATH", "/usr/bin:/bin:/usr/local/bin")
+	Load()
 	if len(Path()) != 3 {
 		t.Fail()
 	}
 	Unset("PATH")
 }
 
-func TestHomeDir(t *testing.T) {
+func TestCachingHomeDir(t *testing.T) {
+	Load()
 	if HomeDir() == "" {
 		t.Fail()
 	}
