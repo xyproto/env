@@ -76,3 +76,13 @@ func TestHomeDir(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestFloat32(t *testing.T) {
+	Unload()
+	Set("F", "1.234")
+	f := Float32("F", 0.0)
+	if f != 1.234 {
+		t.Fail()
+	}
+	Unset("F")
+}
