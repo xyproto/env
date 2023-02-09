@@ -104,8 +104,16 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
     20m0s
 
+## Cache
+
+* If `Load()` is called, then cache is enabled and all environment variables are read from the system.
+* The functions offered by this package will then read the values from the cache instead.
+* If variables are set with `os.Setenv`, then `Load()` can be used to read the environment variables from the system again.
+* `Unload()` can be called to stop using the cache and only rely on `os.Setenv` and `os.Getenv` again.
+* The `Set` and `Unset` functions can be used to both set values with `os.Setenv` and also modify the cache, so that an additional call to `Load()` is not needed.
+
 ## General info
 
-* Version: 1.8.0
+* Version: 1.9.0
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
