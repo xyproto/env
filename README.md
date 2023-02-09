@@ -37,14 +37,6 @@ Only the first optional value is used, if the environment variable value is empt
 
 `Has` return true if the given environment variable name is non-empty.
 
-### func Int64
-
-Same as Int, but takes a default int64 value and returns an int64.
-
-### func Float64
-
-Same as Int, but takes a default float64 value and returns a float64.
-
 ### DurationSeconds
 
 Takes a default int64 value, for the number of seconds, interprets the environment variable as the number of seconds and returns a `time.Duration`.
@@ -84,6 +76,10 @@ Does the same as the `Str` function, but replaces a leading `~` or `$HOME` with 
 ### Path
 
 Returns the current `$PATH` as a slice of strings.
+
+### Other functions
+
+There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
 
 ## Example
 

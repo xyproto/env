@@ -95,6 +95,69 @@ func Int64(envName string, defaultValue int64) int64 {
 	return i64
 }
 
+// Int32 returns the number stored in the environment variable, or the provided default value.
+func Int32(envName string, defaultValue int32) int32 {
+	i32, err := strconv.ParseInt(Str(envName), 10, 32)
+	if err != nil {
+		return defaultValue
+	}
+	return int32(i32)
+}
+
+// Int16 returns the number stored in the environment variable, or the provided default value.
+func Int16(envName string, defaultValue int16) int16 {
+	i16, err := strconv.ParseInt(Str(envName), 10, 16)
+	if err != nil {
+		return defaultValue
+	}
+	return int16(i16)
+}
+
+// Int8 returns the number stored in the environment variable, or the provided default value.
+func Int8(envName string, defaultValue int8) int8 {
+	i8, err := strconv.ParseInt(Str(envName), 10, 8)
+	if err != nil {
+		return defaultValue
+	}
+	return int8(i8)
+}
+
+// UInt64 returns the number stored in the environment variable, or the provided default value.
+func UInt64(envName string, defaultValue uint64) uint64 {
+	ui64, err := strconv.ParseUint(Str(envName), 10, 64)
+	if err != nil {
+		return defaultValue
+	}
+	return ui64
+}
+
+// UInt32 returns the number stored in the environment variable, or the provided default value.
+func UInt32(envName string, defaultValue uint32) uint32 {
+	ui32, err := strconv.ParseUint(Str(envName), 10, 32)
+	if err != nil {
+		return defaultValue
+	}
+	return uint32(ui32)
+}
+
+// UInt16 returns the number stored in the environment variable, or the provided default value.
+func UInt16(envName string, defaultValue uint16) uint16 {
+	ui16, err := strconv.ParseUint(Str(envName), 10, 16)
+	if err != nil {
+		return defaultValue
+	}
+	return uint16(ui16)
+}
+
+// UInt8 returns the number stored in the environment variable, or the provided default value.
+func UInt8(envName string, defaultValue uint8) uint8 {
+	ui8, err := strconv.ParseUint(Str(envName), 10, 8)
+	if err != nil {
+		return defaultValue
+	}
+	return uint8(ui8)
+}
+
 // Float64 returns the number stored in the environment variable, or the provided default value.
 func Float64(envName string, defaultValue float64) float64 {
 	f64, err := strconv.ParseFloat(Str(envName), 64)
@@ -102,6 +165,15 @@ func Float64(envName string, defaultValue float64) float64 {
 		return defaultValue
 	}
 	return f64
+}
+
+// Float32 returns the number stored in the environment variable, or the provided default value.
+func Float32(envName string, defaultValue float32) float32 {
+	f32, err := strconv.ParseFloat(Str(envName), 32)
+	if err != nil {
+		return defaultValue
+	}
+	return float32(f32)
 }
 
 // DurationSeconds interprets the environment variable value as seconds
