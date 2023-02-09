@@ -79,7 +79,7 @@ func Set(name, value string) error {
 		}
 		mut.Unlock()
 	}
-	return os.Setenv(name, "")
+	return os.Setenv(name, value)
 }
 
 // Unset will clear an environment variable by calling os.Setenv(name, "").
