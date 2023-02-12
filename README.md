@@ -105,7 +105,7 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 * Cache is enabled by default from version 2.0.0 and beyond. The first time a variable is read, all environment variables are read into the cache, to avoid unnecessary system calls.
 * If `Unload()` is called, then the cache is disabled and cleared and `os.Getenv` and `os.Setenv` are used directly.
 * If the cache functionality is disabled, then `Load()` can be used to enable it and to read the environment variables from the system again.
-* If the cache is disabled, then the `Set` and `Unset` functions can be used to both set values with `os.Setenv` and also modify the cache, so that an additional call to `Load()` is not needed.
+* The `Set` and `Unset` functions can be used to both set values with `os.Setenv` and also modify the cache, so that an additional call to `Load()` is not needed.
 
 ## General info
 
