@@ -77,6 +77,10 @@ Does the same as the `Str` function, but replaces a leading `~` or `$HOME` with 
 
 Returns the current `$PATH` as a slice of strings.
 
+### EtcEnvironment
+
+Lookup `KEY=VALUE` lines in `/etc/environment` and return the value, if found.
+
 ### Other functions
 
 There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
