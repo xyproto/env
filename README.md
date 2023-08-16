@@ -25,11 +25,29 @@ Only the first optional value is used, if the environment variable value is empt
 
 `Int` returns the number stored in the environment variable, or the given default value.
 
+### func True
+
+`func True(s string) bool`
+
+Checks if the given string is a positive string that should be interpreted as `true`, such as `"yes"`, `"1"` or `"true"`.
+
+### func False
+
+`func False(s string) bool`
+
+Checks if the given string is a negative string that should be interpreted as `false`, such as `"no"`, `"0"` or `"false"`.
+
 ### func AsBool
 
 `func AsBool(s string) bool`
 
 `AsBool` can be used to interpret a string value as either `true` or `false`. Examples of `true` values are "yes" and "1".
+
+### func AsBoolSimple
+
+`func AsBoolSimple(s string) bool`
+
+Checks if the given string is `1`.
 
 ### func Has
 
