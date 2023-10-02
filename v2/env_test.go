@@ -2,6 +2,7 @@ package env
 
 import (
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -85,4 +86,27 @@ func TestFloat32(t *testing.T) {
 		t.Fail()
 	}
 	Unset("F")
+}
+
+func TestEnviron(t *testing.T) {
+	// Save original environment
+	origEnv := os.Environ()
+
+	// Test with caching off
+	useCaching = false
+	if got, want := Environ(), origEnv; !reflect.DeepEqual(got, want) {
+		t.Errorf("Environ() = %v, want %v", got, want)
+	}
+
+	// Turn on caching and create a fake environment
+	useCaching = true
+	environment = map[string]string{
+		"FOO": "BAR",
+		"BAZ": "QUX",
+	}
+
+	expected := []string{"FOO=BAR", "BAZ=QUX"}
+	if got := Environ(); !reflect.DeepEqual(got, expected) {
+		t.Errorf("Environ() = %v, want %v", got, expected)
+	}
 }
