@@ -105,6 +105,10 @@ Returns true of `XDG_SESSION_TYPE` is `wayland` or if `DESKTOP_SESSION` contains
 
 ## XSession
 
+Returns true if `DISPLAY` is set.
+
+## OnlyXSession
+
 Returns true if `DISPLAY` is set and `WaylandSession()` returns false.
 
 ## XOrWaylandSession
