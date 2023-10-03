@@ -99,6 +99,18 @@ Returns the current `$PATH` as a slice of strings.
 
 Lookup `KEY=VALUE` lines in `/etc/environment` and return the value, if found.
 
+## WaylandSession
+
+Returns true of `XDG_SESSION_TYPE` is `wayland` or if `DESKTOP_SESSION` contains `wayland`.
+
+## XSession
+
+Returns true if `DISPLAY` is set and `WaylandSession()` returns false.
+
+## XOrWaylandSession
+
+Returns true if `DISPLAY` is set or `WaylandSession()` returns true.
+
 ### Other functions
 
 There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
