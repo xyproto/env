@@ -105,8 +105,9 @@ func TestEnviron(t *testing.T) {
 		"BAZ": "QUX",
 	}
 
-	expected := []string{"FOO=BAR", "BAZ=QUX"}
-	if got := Environ(); !reflect.DeepEqual(got, expected) {
-		t.Errorf("Environ() = %v, want %v", got, expected)
+	expected1 := []string{"FOO=BAR", "BAZ=QUX"}
+	expected2 := []string{"BAZ=QUX", "FOO=BAR"}
+	if got := Environ(); !reflect.DeepEqual(got, expected1) && !reflect.DeepEqual(got, expected2) {
+		t.Errorf("Environ() = %v, want %v or %v", got, expected1, expected2)
 	}
 }
