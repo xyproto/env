@@ -153,6 +153,6 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 2.2.6
+* Version: 2.3.0
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
