@@ -55,6 +55,12 @@ Checks if the given string is `1`.
 
 `Has` return true if the given environment variable name is non-empty.
 
+## func No
+
+`func No(s string) bool`
+
+`No` returns true if the given environment variable name is not set or empty.
+
 ### DurationSeconds
 
 Takes a default int64 value, for the number of seconds, interprets the environment variable as the number of seconds and returns a `time.Duration`.
