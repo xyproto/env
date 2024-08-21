@@ -6,6 +6,18 @@ Being able to provide default values when retrieving environment variables often
 
 ## Functions
 
+### Keys
+
+Keys returns the all the environment variable names as a sorted string slice
+
+`func Keys() []string`
+
+### Map
+
+Map returns the current environment variables as a map from name to value
+
+`func Map() map[string]string`
+
 ### Str
 
 `func Str(name string, optionalDefault ...string) string`

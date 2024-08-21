@@ -4,6 +4,7 @@ package env
 import (
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -308,4 +309,37 @@ func Environ() []string {
 		return xs
 	}
 	return os.Environ()
+}
+
+// Keys returns the all the environment variable names as a sorted string slice
+func Keys() []string {
+	var keys []string
+	if useCaching {
+		mut.RLock()
+		defer mut.RUnlock()
+		for k := range environment {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		return keys
+	}
+	for _, keyAndValue := range os.Environ() {
+		pair := strings.SplitN(keyAndValue, "=", 2)
+		keys = append(keys, pair[0])
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+// Map returns the current environment variables as a map from name to value
+func Map() map[string]string {
+	if useCaching {
+		return environment
+	}
+	m := make(map[string]string)
+	for _, keyAndValue := range os.Environ() {
+		pair := strings.SplitN(keyAndValue, "=", 2)
+		m[pair[0]] = pair[1]
+	}
+	return m
 }
