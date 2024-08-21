@@ -43,8 +43,8 @@ func Load() {
 	mut.Lock()
 	environment = make(map[string]string)
 	// Read all the environment variables into the map
-	for _, statement := range os.Environ() {
-		pair := strings.SplitN(statement, "=", 2)
+	for _, keyAndValue := range os.Environ() {
+		pair := strings.SplitN(keyAndValue, "=", 2)
 		environment[pair[0]] = pair[1]
 	}
 	mut.Unlock()
