@@ -6,60 +6,66 @@ Being able to provide default values when retrieving environment variables often
 
 ## Functions
 
-### func Str
+### Str
 
 `func Str(name string, optionalDefault ...string) string`
 
 `Str` does the same as `os.Getenv`, but allows the user to provide a default value (optional).
 Only the first optional value is used, if the environment variable value is empty or not set.
 
-### func Bool
+### Bool
 
 `func Bool(envName string) bool`
 
 `Bool` returns the bool value of the given environment variable name. Returns `false` if it is not declared or empty.
 
-### func Int
+### Int
 
 `func Int(envName string, defaultValue int) int`
 
 `Int` returns the number stored in the environment variable, or the given default value.
 
-### func True
+### True
 
 `func True(s string) bool`
 
 Checks if the given string is a positive string that should be interpreted as `true`, such as `"yes"`, `"1"` or `"true"`.
 
-### func False
+### False
 
 `func False(s string) bool`
 
 Checks if the given string is a negative string that should be interpreted as `false`, such as `"no"`, `"0"` or `"false"`.
 
-### func AsBool
+### AsBool
 
 `func AsBool(s string) bool`
 
 `AsBool` can be used to interpret a string value as either `true` or `false`. Examples of `true` values are "yes" and "1".
 
-### func AsBoolSimple
+### AsBoolSimple
 
 `func AsBoolSimple(s string) bool`
 
 Checks if the given string is `1`.
 
-### func Has
+### Has
 
 `func Has(s string) bool`
 
 `Has` return true if the given environment variable name is non-empty.
 
-## func No
+## No
 
 `func No(s string) bool`
 
 `No` returns true if the given environment variable name is not set or empty.
+
+## CurrentUser
+
+`func CurrentUser() string`
+
+Returns the current LOGNAME or USER env name, or an empty string.
 
 ### DurationSeconds
 
