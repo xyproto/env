@@ -37,6 +37,12 @@ Only the first optional value is used, if the environment variable value is empt
 
 `Int` returns the number stored in the environment variable, or the given default value.
 
+### Environ
+
+`func Environ() []string`
+
+`Environ` returns the same as `os.Environ()`; a slice of strings with `=` between the key and value, except that the contents are cached by default.
+
 ### True
 
 `func True(s string) bool`
