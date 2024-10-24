@@ -147,7 +147,7 @@ Returns true if `DISPLAY` is set or `WaylandSession()` returns true.
 
 ### Other functions
 
-There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
+There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Uint`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
 
 ## Example
 
