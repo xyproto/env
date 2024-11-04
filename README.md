@@ -145,9 +145,18 @@ Returns true if `DISPLAY` is set and `WaylandSession()` returns false.
 
 Returns true if `DISPLAY` is set or `WaylandSession()` returns true.
 
+## Set
+
+Takes the name of the environment variable to be set and an optional string value. If no string is given, `1` is used as the value.
+
+## Unset
+
+Takes the name of the environment variable to unset.
+
 ### Other functions
 
 There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Uint`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
+
 
 ## Example
 
@@ -177,6 +186,6 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 2.5.1
+* Version: 2.5.2
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
