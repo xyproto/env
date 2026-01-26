@@ -153,6 +153,10 @@ Takes the name of the environment variable to be set and an optional string valu
 
 Takes the name of the environment variable to unset.
 
+## TrashPath
+
+Returns the path to the "trash folder" / "recycle bin".
+
 ### Other functions
 
 There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Uint`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
@@ -186,6 +190,6 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 2.5.3
+* Version: 2.5.4
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
