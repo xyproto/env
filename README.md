@@ -157,6 +157,10 @@ Takes the name of the environment variable to unset.
 
 Returns the path to the "trash folder" / "recycle bin".
 
+## Email
+
+Tries to return the email address for the current user, first checking the `EMAIL` environment variable and then `git config user.email`.
+
 ### Other functions
 
 There are also: `Float64`, `Float32`, `Uint64`, `Uint32`, `Uint16`, `Uint8`, `Uint`, `Int64`, `Int32`, `Int16` and `Int8` functions available.
@@ -190,6 +194,6 @@ Running the above program like this: `REQUEST_TIMEOUT=1200 ./main`, outputs:
 
 ## General info
 
-* Version: 2.5.5
+* Version: 2.5.6
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
