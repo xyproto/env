@@ -76,3 +76,62 @@ func TestCachingHomeDir(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestCollectionReadsInitializeCache(t *testing.T) {
+	const name = "ENV_COLLECTION_CACHE_TEST"
+	for _, tc := range []struct {
+		name     string
+		contains func() bool
+	}{
+		{"Environ", func() bool {
+			for _, entry := range Environ() {
+				if strings.HasPrefix(entry, name+"=") {
+					return true
+				}
+			}
+			return false
+		}},
+		{"Keys", func() bool {
+			for _, key := range Keys() {
+				if key == name {
+					return true
+				}
+			}
+			return false
+		}},
+		{"Map", func() bool {
+			_, ok := Map()[name]
+			return ok
+		}},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			oldCaching, oldEnvironment := useCaching, environment
+			t.Cleanup(func() {
+				useCaching, environment = oldCaching, oldEnvironment
+			})
+			t.Setenv(name, "present")
+			useCaching, environment = true, nil
+
+			if !tc.contains() {
+				t.Fatal("first read did not load the environment")
+			}
+			if err := os.Unsetenv(name); err != nil {
+				t.Fatal(err)
+			}
+			if !tc.contains() {
+				t.Fatal("cached read did not preserve the snapshot")
+			}
+
+			Unload()
+			if tc.contains() {
+				t.Fatal("uncached read returned the old snapshot")
+			}
+
+			t.Setenv(name, "present")
+			useCaching, environment = true, map[string]string{}
+			if tc.contains() {
+				t.Fatal("read replaced an initialized empty cache")
+			}
+		})
+	}
+}
