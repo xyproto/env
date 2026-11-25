@@ -1,4 +1,4 @@
-# Env ![Build](https://github.com/xyproto/env/workflows/Build/badge.svg) [![GoDoc](https://godoc.org/github.com/xyproto/env?status.svg)](http://godoc.org/github.com/xyproto/env) [![Go Report Card](https://goreportcard.com/badge/github.com/xyproto/env)](https://goreportcard.com/report/github.com/xyproto/env)
+# Env ![Build](https://github.com/xyproto/env/workflows/Build/badge.svg) [![GoDoc](https://godoc.org/github.com/xyproto/env?status.svg)](http://godoc.org/github.com/xyproto/env)
 
 Makes fetching and interpreting environment variables easy and safe.
 
