@@ -4,6 +4,8 @@ Makes fetching and interpreting environment variables easy and safe.
 
 Being able to provide default values when retrieving environment variables often makes program logic shorter and more readable.
 
+Also uses caching by default, for performance (`os.Getenv` can be relatively slow).
+
 ## Functions
 
 ### Keys
